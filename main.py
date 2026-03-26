@@ -1,3 +1,6 @@
+# main.py
+# Electronics Store Inventory System
+
 while True:
     print("\n  ================================")
     print("   Electronics Store Inventory")
@@ -10,9 +13,9 @@ while True:
     print("  6. View low stock alerts")
     print("  7. Save & Exit")
     print("  ================================")
- 
+
     choice = input("\n  Enter choice (1-7): ").strip()
- 
+
     if choice == "1":
         pass
     elif choice == "2":
