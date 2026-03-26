@@ -1,0 +1,4 @@
+id,name,price,stock_quantity,category,brand,warranty_period
+1,Laptop,999.99,10,Electronics,Apple,12
+2,Mouse,25.50,50,Electronics,Logitech,6
+3,Book,15.00,20,Books,,
