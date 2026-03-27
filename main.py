@@ -20,7 +20,6 @@ def view_all_products(inventory):
             p.product_id, p.name, p.brand, p.price, p.quantity, p.category))
 
 def add_product(inventory):
-    """Ask the user for details and add a new Electronics product."""
     print("\n  -- Add New Product --")
  
     name = input("  Product name: ").strip()
@@ -69,7 +68,6 @@ def add_product(inventory):
     print(f"\n  Product added successfully! ID: {pid}")
 
 def remove_product(inventory):
-    """Remove a product by its ID."""
     print("\n  -- Remove Product --")
     pid = input("  Enter product ID to remove (e.g. ELEC-001): ").strip().upper()
  
@@ -84,7 +82,6 @@ def remove_product(inventory):
         print(f"  Error: Product {pid} not found.")
 
 def search_products(inventory):
-    """Search products by name."""
     print("\n  -- Search Products --")
     query = input("  Enter search term: ").strip()
  
@@ -101,6 +98,14 @@ def search_products(inventory):
     print(f"\n  Found {len(results)} result(s):")
     for p in results:
         print(f"  [{p.product_id}] {p.name} — {p.brand} — £{p.price:.2f} — Stock: {p.quantity}")
+
+def update_stock(inventory):
+    print("\n  -- Update Stock Quantity --")
+    pid = input("  Enter product ID (e.g. ELEC-001): ").strip().upper()
+ 
+    if not is_valid_product_id(pid):
+        print("  Error: Invalid product ID format.")
+        return
 
 while True:
     print("\n  ================================")
