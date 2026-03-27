@@ -121,6 +121,29 @@ def update_stock(inventory):
     product.quantity = int(new_qty)
     print(f"  Stock updated to {product.quantity}.")
 
+def view_low_stock(inventory):
+    """Show products with stock at or below a threshold."""
+    print("\n  -- Low Stock Alerts --")
+    threshold_input = input("  Enter low stock threshold (press Enter for default 5): ").strip()
+ 
+    if threshold_input == "":
+        threshold = 5
+    elif is_valid_quantity(threshold_input):
+        threshold = int(threshold_input)
+    else:
+        print("  Error: Invalid threshold.")
+        return
+ 
+    alerts = inventory.low_stock_alert(threshold)
+ 
+    if not alerts:
+        print(f"  All products are above {threshold} units.")
+        return
+ 
+    print(f"\n  Products with {threshold} or fewer units in stock:")
+    for p in alerts:
+        print(f"  [{p.product_id}] {p.name} — Stock: {p.quantity}")
+        
 while True:
     print("\n  ================================")
     print("   Electronics Store Inventory")
