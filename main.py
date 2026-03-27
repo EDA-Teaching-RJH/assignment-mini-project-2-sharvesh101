@@ -23,6 +23,14 @@ def view_all_products(inventory):
     for p in products:
         print("  {:<12} {:<20} {:<15} £{:<9.2f} {:<8} {}".format(
             p.product_id, p.name, p.brand, p.price, p.quantity, p.category))
+        
+def generate_product_id(inventory):
+    while True:
+        number = str(random.randint(1, 999)).zfill(3)
+        pid = "ELEC-" + number
+        # Check it doesn't already exist in the inventory
+        if not inventory.find_by_id(pid):
+            return pid
 
 def add_product(inventory):
     print("\n  -- Add New Product --")
@@ -57,7 +65,7 @@ def add_product(inventory):
         print("  Error: Invalid warranty. Enter a number between 1 and 5.")
         return
  
-    pid = generate_product_id(inventory)
+    pid = generate_product_id(inventory)   # Fix this Issue
  
     new_product = Electronics(
         product_id=pid,
