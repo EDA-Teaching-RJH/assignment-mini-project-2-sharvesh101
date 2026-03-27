@@ -1,7 +1,12 @@
 # main.py
 # Electronics Store Inventory System
+import random
+import datetime
+import csv
+
 from product import Electronics
 from inventory import Inventory
+from file_manager import FileManager
 from validators import is_valid_product_id, is_valid_price, is_valid_quantity, is_valid_warranty
 
 def view_all_products(inventory):
@@ -122,7 +127,6 @@ def update_stock(inventory):
     print(f"  Stock updated to {product.quantity}.")
 
 def view_low_stock(inventory):
-    """Show products with stock at or below a threshold."""
     print("\n  -- Low Stock Alerts --")
     threshold_input = input("  Enter low stock threshold (press Enter for default 5): ").strip()
  
@@ -143,7 +147,19 @@ def view_low_stock(inventory):
     print(f"\n  Products with {threshold} or fewer units in stock:")
     for p in alerts:
         print(f"  [{p.product_id}] {p.name} — Stock: {p.quantity}")
-        
+
+def save_and_exit(inventory, file_manager):
+    """Save inventory to CSV, log the event, and exit."""
+    file_manager.save_to_csv(inventory.products)
+ 
+    # Write a timestamped entry to the sales log
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    with open("sales_log.csv", "a", newline="") as log:
+        writer = csv.writer(log)
+        writer.writerow([timestamp, "SAVE", "Inventory saved successfully"])
+ 
+    print("  Goodbye!")
+
 while True:
     print("\n  ================================")
     print("   Electronics Store Inventory")
