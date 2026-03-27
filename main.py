@@ -68,6 +68,21 @@ def add_product(inventory):
     inventory.add_product(new_product)
     print(f"\n  Product added successfully! ID: {pid}")
 
+def remove_product(inventory):
+    """Remove a product by its ID."""
+    print("\n  -- Remove Product --")
+    pid = input("  Enter product ID to remove (e.g. ELEC-001): ").strip().upper()
+ 
+    if not is_valid_product_id(pid):
+        print("  Error: Invalid product ID format. Use ELEC-### format.")
+        return
+ 
+    success = inventory.remove_product(pid)
+    if success:
+        print(f"  Product {pid} removed successfully.")
+    else:
+        print(f"  Error: Product {pid} not found.")
+
 while True:
     print("\n  ================================")
     print("   Electronics Store Inventory")
