@@ -106,6 +106,20 @@ def update_stock(inventory):
     if not is_valid_product_id(pid):
         print("  Error: Invalid product ID format.")
         return
+    product = inventory.find_by_id(pid)
+    if not product:
+        print(f"  Error: Product {pid} not found.")
+        return
+ 
+    print(f"  Current stock for '{product.name}': {product.quantity}")
+    new_qty = input("  New quantity: ").strip()
+ 
+    if not is_valid_quantity(new_qty):
+        print("  Error: Invalid quantity.")
+        return
+ 
+    product.quantity = int(new_qty)
+    print(f"  Stock updated to {product.quantity}.")
 
 while True:
     print("\n  ================================")
