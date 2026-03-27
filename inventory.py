@@ -1,7 +1,6 @@
 # inventory.py
 
 class Inventory:
-
     def __init__(self):
         self.products = []          # list of Electronics objects
 
