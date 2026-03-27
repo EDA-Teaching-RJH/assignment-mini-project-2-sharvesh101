@@ -2,10 +2,9 @@
 
 class Inventory:
     def __init__(self):
-        self.products = []          # list of Electronics objects
+        self.products = []
 
     def add_product(self, product):
-        """Add a product to the inventory."""
         self.products.append(product)
 
     def remove_product(self, product_id):

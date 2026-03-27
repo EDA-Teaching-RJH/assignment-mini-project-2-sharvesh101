@@ -2,7 +2,6 @@
 import csv
 from product import Electronics
 
-
 class FileManager:
 
     def __init__(self, filename):
