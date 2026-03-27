@@ -83,6 +83,25 @@ def remove_product(inventory):
     else:
         print(f"  Error: Product {pid} not found.")
 
+def search_products(inventory):
+    """Search products by name."""
+    print("\n  -- Search Products --")
+    query = input("  Enter search term: ").strip()
+ 
+    if not query:
+        print("  Error: Search term cannot be empty.")
+        return
+ 
+    results = inventory.search(query)
+ 
+    if not results:
+        print(f"  No products found matching '{query}'.")
+        return
+ 
+    print(f"\n  Found {len(results)} result(s):")
+    for p in results:
+        print(f"  [{p.product_id}] {p.name} — {p.brand} — £{p.price:.2f} — Stock: {p.quantity}")
+
 while True:
     print("\n  ================================")
     print("   Electronics Store Inventory")
