@@ -160,35 +160,49 @@ def save_and_exit(inventory, file_manager):
  
     print("  Goodbye!")
 
-while True:
-    print("\n  ================================")
-    print("   Electronics Store Inventory")
-    print("  ================================")
-    print("  1. View all products")
-    print("  2. Add new product")
-    print("  3. Remove product")
-    print("  4. Search products")
-    print("  5. Update stock quantity")
-    print("  6. View low stock alerts")
-    print("  7. Save & Exit")
-    print("  ================================")
-
-    choice = input("\n  Enter choice (1-7): ").strip()
-
-    if choice == "1":
-        pass
-    elif choice == "2":
-        pass
-    elif choice == "3":
-        pass
-    elif choice == "4":
-        pass
-    elif choice == "5":
-        pass
-    elif choice == "6":
-        pass
-    elif choice == "7":
-        print("\n  Goodbye!")
-        break
-    else:
-        print("  Invalid choice. Please enter a number between 1 and 7.")
+def main():
+    file_manager = FileManager("inventory.csv")
+    inventory = Inventory()
+ 
+    # Load any existing products from CSV on startup
+    loaded_products = file_manager.load_from_csv()
+    for product in loaded_products:
+        inventory.add_product(product)
+ 
+    while True:
+        print("\n  ================================")
+        print("   Electronics Store Inventory")
+        print("  ================================")
+        print("  1. View all products")
+        print("  2. Add new product")
+        print("  3. Remove product")
+        print("  4. Search products")
+        print("  5. Update stock quantity")
+        print("  6. View low stock alerts")
+        print("  7. Save & Exit")
+        print("  ================================")
+ 
+        choice = input("\n  Enter choice (1-7): ").strip()
+ 
+        if choice == "1":
+            view_all_products(inventory)
+        elif choice == "2":
+            add_product(inventory)
+        elif choice == "3":
+            remove_product(inventory)
+        elif choice == "4":
+            search_products(inventory)
+        elif choice == "5":
+            update_stock(inventory)
+        elif choice == "6":
+            view_low_stock(inventory)
+        elif choice == "7":
+            save_and_exit(inventory, file_manager)
+            break
+        else:
+            print("  Invalid choice. Please enter a number between 1 and 7.")
+ 
+ 
+if __name__ == "__main__":
+    import csv
+    main()
